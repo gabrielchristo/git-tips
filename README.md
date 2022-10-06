@@ -1,6 +1,6 @@
 # Git Tips
 
-Common git commands guide
+Common Git commands guide
 
 
 
@@ -9,6 +9,41 @@ Common git commands guide
 - https://rogerdudler.github.io/git-guide/index.pt_BR.html
 - https://github.com/git-tips/tips
 
+https://medium.com/vtex-lab/por-que-voc%C3%AA-deveria-usar-git-rebase-d75b41e900f2
+whats-the-difference-between-git-switch-and-git-checkout-branch
+https://nitaym.github.io/ourstheirs/
+http://gmmoreira.com/2016-11-10/o-que-aprendi-hoje-git-update-index.html
+https://koukia.ca/how-to-remove-local-untracked-files-from-the-current-git-branch-571c6ce9b6b1
+how-do-i-remove-a-single-file-from-the-staging-area-undo-git-add
+
+
+git status -v
+
+git commit
+
+git compare two branches diff or two commits
+
+undo all local changes
+git checkout .
+
+git config email
+
+git track specific file changes
+git log search and changes
+
+git init
+git clone submodules
+
+git clean, coderwall
+
+
+avoid pull conflicts
+git config pull ff only
+git pull rebase
+
+delete branch
+
+git branch -vv
 
 ## ToDo
 
