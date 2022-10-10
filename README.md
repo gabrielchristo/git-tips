@@ -19,31 +19,17 @@ how-do-i-remove-a-single-file-from-the-staging-area-undo-git-add
 
 git status -v
 
-git commit
 
 git compare two branches diff or two commits
 
-undo all local changes
-git checkout .
 
-git config email
 
 git track specific file changes
 git log search and changes
 
-git init
-git clone submodules
 
-git clean, coderwall
-
-
-avoid pull conflicts
-git config pull ff only
-git pull rebase
-
-delete branch
-
-git branch -vv
+06.20.22
+git add -u
 
 ## ToDo
 
@@ -57,5 +43,4 @@ git branch -vv
 - define style for commands
 - split by categories
 - put all description at only one entry (eliminate command field)
-- do project using reactJS?
 - linkedin post when done hehe

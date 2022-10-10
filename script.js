@@ -26,23 +26,34 @@ function init(commands)
 		// creating title
 		var title = document.createElement("h2");
 		title.innerText = entry["title"];
+		blockDiv.appendChild(title);
 
-		// creating description
-		var description = document.createElement("p");
-		description.innerText = entry["description"];
-
-		// creating command
-		var cmdDiv = document.createElement("div");
-		cmdDiv.className = 'console-background';
-		var cmd = document.createElement("p");
-		cmd.className = 'console-text-own';
-		cmd.innerText = "$ " + entry["command"];
+		const MAX_VALUE = 5;
+		for(let i = 1; i <= MAX_VALUE; i++)
+		{
+			// creating description and other texts
+			if (entry["text_" + i] != undefined)
+			{
+				var description = document.createElement("p");
+				description.innerText = entry["text_" + i];
+				// append to command div
+				blockDiv.appendChild(description);
+			}
+			// creating commands
+			if (entry["command_" + i] != undefined)
+			{
+				var cmdDiv = document.createElement("div");
+				cmdDiv.className = 'console-background';
+				var cmd = document.createElement("p");
+				cmd.className = 'console-text-own';
+				cmd.innerText = entry["command_" + i];
+				// append to command div
+				cmdDiv.appendChild(cmd);
+				blockDiv.appendChild(cmdDiv);
+			}
+		}
 
 		// append to body
-		cmdDiv.appendChild(cmd);
-		blockDiv.appendChild(title);
-		blockDiv.appendChild(description);
-		blockDiv.appendChild(cmdDiv);
 		newDiv.appendChild(blockDiv);
         document.getElementById("content").appendChild(newDiv);
     });
