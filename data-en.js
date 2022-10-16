@@ -28,49 +28,58 @@ var data_en =
 		"title": "Initialize a repository",
 		"text_1": "",
 		"command_1": "git init [-b <initial_branch_name>]",
-		"category": ""
+		"category": "init"
 	},
 	{
 		"title": "Clone a repository",
 		"text_1": "",
 		"command_1": "git clone [--recurse-submodules] <repository_link>",
-		"category": ""
+		"text_2": "You can also clone a single branch",
+		"command_2": "git clone -b <branch> --single-branch <repository_link>",
+		"category": "init"
 	},
 
 	// stage area
 	{
-		"title": "Add file to stage",
+		"title": "Show working directory status",
 		"text_1": "",
-		"command_1": "git add <file>",
-		"category": "staging area"
+		"command_1": "git status [--show-stash] [--verbose] [--ignored]",
+		"category": "stage area"
 	},
 	{
-		"title": "Add specific lines of file to stage",
-		"text_1": "It will interactively let you add, skip or split diff hunks",
-		"command_1": "git add -p <file>",
-		"category": "staging area"
+		"title": "Add file to stage",
+		"text_1": "Use -p option to add specific lines of file. It will interactively let you add, skip or split diff hunks",
+		"command_1": "git add <file> [-p]",
+		"category": "stage area"
 	},
-
+	{
+		"title": "Add all files to stage",
+		"text_1": "",
+		"command_1": "git add .",
+		"text_2": "You can also use following command to add all the already tracked files",
+		"command_2": "git add -u",
+		"category": "stage area"
+	},
 	{
 		"title": "Remove file from stage",
 		"text_1": "Unstage desired file from the index",
 		"command_1": "git reset HEAD -- <file | directory>",
 		"text_2": "or",
 		"command_2": "git restore --staged <file>",
-		"category": ""
+		"category": "stage area"
 	},
 
 	{
 		"title": "Delete local changes of file",
 		"text_1": "",
 		"command_1": "git checkout -- <file>",
-		"category": ""
+		"category": "stage area"
 	},
 	{
 		"title": "Delete all not staged local changes",
 		"text_1": "",
 		"command_1": "git checkout .",
-		"category": ""
+		"category": "stage area"
 	},
 
 	{
@@ -80,7 +89,7 @@ var data_en =
 		"text_2": "You can also remove directories with the -f -d option",
 		"text_3": "To remove only ignored files use the -f -X option",
 		"text_4": "With -n option you can preview the damage you'll do",
-		"category": ""
+		"category": "stage area"
 	},
 
 	// diff
@@ -92,25 +101,36 @@ var data_en =
 		"command_2": "git diff --cached",
 		"category": "diff"
 	},
+	{
+		"title": "Compare two commits or branches",
+		"text_1": "Use the --name-only option to check only which files differ (not the content difference)",
+		"command_1": "git diff <parameter_1>..<parameter_2> [--name-only] [<path>]",
+		"text_2": "The parameters can be a branch name or a commit hash",
+		"text_3": "You can use three dots to find the diff from their common ancestor",
+		"text_4": "You can also specify a path to check only one file or folder",
+		"category": "diff"
+	},
 
 	// stash
 	{
 		"title": "Save changes to stash",
-		"text_1": "",
-		"command_1": "git stash push [-m <message>]",
-		"category": ""
+		"text_1": "Useful to clean the working directory but keep current state of changes",
+		"command_1": "git stash push [-m <message>] [--include-untracked]",
+		"category": "stash"
 	},
 	{
 		"title": "Recover changes from stash",
-		"text_1": "",
-		"command_1": "git stash pop",
-		"category": ""
+		"text_1": "Apply is the same of pop, but will not remove stash from list",
+		"command_1": "git stash (pop | apply) [<stash>]",
+		"text_2": "You can also recover a single file from stash",
+		"command_2": "git checkout stash@{<index>} -- <file>",
+		"category": "stash"
 	},
 	{
 		"title": "List stashes",
-		"text_1": "",
+		"text_1": "List of all stash entries in the format stash@{<index>}",
 		"command_1": "git stash list",
-		"category": ""
+		"category": "stash"
 	},
 
 
@@ -119,26 +139,26 @@ var data_en =
 		"title": "Commit changes",
 		"text_1": "",
 		"command_1": "git commit [-m <message>]",
-		"category": ""
+		"category": "commit"
 	},
 	{
 		"title": "Undo a local commit",
 		"text_1": "Undo last or specific commit",
 		"command_1": "git reset [--soft | --hard] (HEAD~ | <commit_hash>)",
-		"category": ""
+		"category": "commit"
 	},
 	{
 		"title": "Recover destroyed commit with hard reset",
 		"text_1": "",
 		"command_1": "git reflog\n"
 		+ "git checkout -b <new_branch_name> <destroyed_commit_hash>",
-		"category": ""
+		"category": "commit"
 	},
 	{
 		"title": "Checkout specific commit",
 		"text_1": "",
 		"command_1": "git checkout <commit_hash>",
-		"category": ""
+		"category": "commit"
 	},
 
 	// pull
@@ -149,30 +169,26 @@ var data_en =
 		"text_2": "With --ff-only option, git will only update your branch if it can be fast forwarded",
 		"text_3": "With --rebase option, git will rebase local changes on top of remote changes",
 		"text_4": "With --ff option, git will create a merge commit",
-		"category": ""
+		"category": "pull"
 	},
 
 	{
 		"title": "Update remote of all branches",
 		"text_1": "",
-		"command_1": "git fetch (-a | --all)"
+		"command_1": "git fetch (-a | --all)",
+		"category": "pull"
 	},
 
 
 	// push
-
 	{
 		"title": "Push changes to remote",
 		"text_1": "",
 		"command_1": "git push",
-		"category": ""
+		"text_2": "To setup remote branch tracking information to a new local branch, use",
+		"command_2": "git push -u origin <remote_branch_name>",
+		"category": "push"
 	},
-	{
-		"title": "Push new branch to remote",
-		"text_1": "It will setup remote branch tracking information to local branch",
-		"command_1": "git push -u origin <remote_branch_name>"
-	},
-
 
 	// branch
 	{
@@ -186,7 +202,13 @@ var data_en =
 		"title": "List branches",
 		"text_1": "",
 		"command_1": "git branch -vv",
-		"category": ""
+		"category": "branch"
+	},
+	{
+		"title": "List branches merged into another",
+		"text_1": "",
+		"command_1": "git branch --merged <branch>",
+		"category": "branch"
 	},
 	
 	{
@@ -195,7 +217,14 @@ var data_en =
 		"command_1": "git checkout <branch_name>\n",
 		"text_2": "or",
 		"command_2": "git switch <branch_name>",
-		"category": ""
+		"category": "branch"
+	},
+
+	{
+		"title": "Rename a branch",
+		"text_1": "",
+		"command_1": "git branch -m [<old_branch_name>] <new_branch_name>",
+		"category": "branch"
 	},
 
 	{
@@ -235,24 +264,34 @@ var data_en =
 	{
 		"title": "Rebase branch",
 		"text_1": "Move commits from branch A to branch B",
-		"command_1": "git checkout A\ngit rebase B",
+		"command_1": "git checkout A\ngit rebase B [--autostash]",
 		"text_2": "Fix eventual <file> conflicts and continue as you would normally do",
 		"command_2": "git add <file>\ngit rebase --continue",
 		"category": "rebase"
 	},
 
-	{
-		"title": "",
-		"text_1": "",
-		"command_1": ""
-	},
-
 	// tag
-
 	{
 		"title": "Create a new tag",
+		"text_1": "To create an annotated tag, use",
+		"command_1": "git tag -a <tag_name> -m <message>",
+		"text_2": "To create a lightweight tag, use",
+		"command_2": "git tag <tag_name>",
+		"text_3": "Then, send your tag to remote",
+		"command_3": "git push origin <tag_name>",
+		"category": "tag"
+	},
+	{
+		"title": "List all tags",
 		"text_1": "",
-		"command_1": "git tag"
+		"command_1": "git tag -l [<regex>]",
+		"category": "tag"
+	},
+	{
+		"title": "Show tag information",
+		"text_1": "",
+		"command_1": "git show <tag_name>",
+		"category": "tag"
 	},
 
 
@@ -263,16 +302,27 @@ var data_en =
 		"command_1": "git log --decorate --graph --all --oneline",
 		"text_2": "You can also setup an alias for the above command",
 		"command_2": "git config alias.<your_alias> 'log --decorate --graph --all --oneline'",
-		"text_3": "then",
+		"text_3": "then, use",
 		"command_3": "git <your_alias>",
-		"category": ""
+		"category": "log"
 	},
 	{
-		"title": "",
+		"title": "Show change history of file",
 		"text_1": "",
-		"command_1": "",
-		"category": ""
+		"command_1": "git log [--follow] -p -- <file>",
+		"text_2": "You can also use the graphical view",
+		"command_2": "gitk [--follow] <file>",
+		"category": "log"
 	},
+	{
+		"title": "Search commit log",
+		"text_1": "",
+		"command_1": "git log [--all] --grep=<pattern>",
+		"text_2": "You can also search commits by content changes, using",
+		"command_2": "git log -S <pattern>",
+		"category": "log"
+	},
+	
 
 	// config
 	{
@@ -280,33 +330,42 @@ var data_en =
 		"text_1": "",
 		"command_1": "git config [--global] user.name <username>"
 					+ "\ngit config [--global] user.email <email>",
-		"category": ""
+		"category": "config"
 	},
 	{
 		"title": "Configure to pull only if fast forward",
 		"text_1": "",
 		"command_1": "git config [--global] pull.ff only",
-		"category": ""
+		"category": "config"
 	},
 
 	// internals
 	{
 		"title": "Stop tracking file changes",
-		"text_1": "",
-		"command_1": "git update-index",
-		"category": ""
+		"text_1": "The --assume-unchanged option will prevent detection of changes for that file or folder. You can bring it back to normal with --no-assume-unchanged option",
+		"command_1": "git update-index [--assume-unchanged | --skip-worktree] <path>",
+		"text_2": "The --skip-worktree option will keep your own independent version of file or folder",
+		"category": "internals"
 	},
+	{
+		"title": "Archive a branch",
+		"text_1": "",
+		"command_1": "git archive <branch> --format=zip --output=<file>.zip",
+		"category": "internals"
+	},
+
+
+
+
+
+
 	{
 		"title": "",
 		"text_1": "",
 		"command_1": "",
 		"category": ""
 	},
-	{
-		"title": "",
-		"text_1": "",
-		"command_1": "",
-		"category": ""
-	}
+	
+	
 
 ]

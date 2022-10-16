@@ -28,7 +28,7 @@ function init(commands)
 		title.innerText = entry["title"];
 		blockDiv.appendChild(title);
 
-		const MAX_VALUE = 5;
+		const MAX_VALUE = 7;
 		for(let i = 1; i <= MAX_VALUE; i++)
 		{
 			// creating description and other texts
