@@ -6,6 +6,9 @@ window.onload = function()
     
 	// random colors for created divs
     setRandomColors();
+
+	// refresh to parallax effect
+	jQuery(window).trigger('resize').trigger('scroll');
 }
 
 function init(commands)
@@ -18,6 +21,7 @@ function init(commands)
         newDiv.className = 'fullheight parallax-window';
         newDiv.setAttribute("data-parallax", "scroll");
         newDiv.setAttribute("data-speed", "0.5");
+		newDiv.setAttribute("data-bleed", "5");
 
 		// creating block div
 		var blockDiv = document.createElement("div");

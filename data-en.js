@@ -90,10 +90,11 @@ var data_en =
 	{
 		"title": "Remove untracked files",
 		"text_1": "You can remove all untracked files with -f option",
-		"command_1": "git clean [-f [-d] [-X]] [-n | --dry-run]",
+		"command_1": "git clean [-f [-d] [-x] [-X]] [-n | --dry-run]",
 		"text_2": "You can also remove directories with the -f -d option",
 		"text_3": "To remove only ignored files use the -f -X option",
-		"text_4": "With -n option you can preview the damage you'll do",
+		"text_4": "To remove both ignored and non-ignored files use the -f -x option",
+		"text_5": "With -n option you can preview the damage you'll do",
 		"category": "stage area"
 	},
 
@@ -154,6 +155,15 @@ var data_en =
 		"category": "commit"
 	},
 	{
+		"title": "Copy commit from another branch",
+		"text_1": "To get a commit or range of commits, use",
+		"command_1": "git cherry-pick <commit_hash>[^][..<another_commit_hash>] [--no-commit]",
+		"text_2": "^ will also include <commit_hash> in the range",
+		"text_3": "To get all commits from a branch, use",
+		"command_3": "git cherry-pick ..<branch_name>",
+		"category": "commit"
+	},
+	{
 		"title": "Recover destroyed commit with hard reset",
 		"text_1": "",
 		"command_1": "git reflog\n"
@@ -202,11 +212,11 @@ var data_en =
 	},
 	{
 		"title": "Push changes to remote",
-		"text_1": "",
-		"command_1": "git push [<remote_name>]",
-		"text_2": "To setup remote branch tracking information to a new local branch, use",
-		"command_2": "git push -u <remote_name> <remote_branch_name>",
-		"text_3": "Usually, <remote_name> will be origin",
+		"text_1": "Usually, <remote_name> will be origin",
+		"command_1": "git push [<remote_name>] [--force | --force-with-lease]",
+		"text_2": "After a rebase operation, use the --force-with-lease flag",
+		"text_3": "To setup remote branch tracking information to a new local branch, use",
+		"command_3": "git push -u <remote_name> <remote_branch_name>",
 		"category": "push"
 	},
 
@@ -262,9 +272,10 @@ var data_en =
 		"title": "Merge branch A into B",
 		"text_1": "With --no-commit option you can inspect the source before the merge commit",
 		"command_1": "git checkout B\n"
-					+ "git merge [--no-commit [--no-ff]] [-m <message>] A",
-		"text_2": "In case of conflict, you can abort the merge",
-		"command_2": "git merge --abort",
+					+ "git merge [--no-commit] [--no-ff] [-m <message>] A",
+		"text_2": "With --no-ff option, even if fast-forward, git will force creation of a merge commit",
+		"text_3": "In case of conflict, you can abort the merge",
+		"command_3": "git merge --abort",
 		"category": "merge"
 	},
 	{
@@ -276,6 +287,7 @@ var data_en =
 		"text_3": "then, continue as you would normally merge",
 		"command_3": "git add <file>\n"
 					+ "git merge --continue",
+		"text_4": "You can also use a graphical tool to fix conflicts, like Visual Studio Code and GitKraken",
 		"category": "merge"
 	},
 
@@ -289,6 +301,7 @@ var data_en =
 		"text_2": "with --autostash option, git will create a temporary stash and apply it after the operation ends",
 		"text_3": "then, fix eventual <file> conflicts and continue as you would normally do",
 		"command_3": "git add <file>\ngit rebase --continue",
+		"text_4": "You may need to force push after a rebase",
 		"category": "rebase"
 	},
 
@@ -372,7 +385,7 @@ var data_en =
 		"title": "Stop tracking file changes",
 		"text_1": "The --assume-unchanged option will prevent detection of changes for that file or folder. You can bring it back to normal with --no-assume-unchanged option",
 		"command_1": "git update-index [--assume-unchanged | --skip-worktree] <path>",
-		"text_2": "The --skip-worktree option will keep your own independent version of file or folder",
+		"text_2": "The --skip-worktree option will keep your own independent version of file or folder. You can bring it back to normal with --no-skip-worktree option",
 		"category": "internals"
 	},
 	{
