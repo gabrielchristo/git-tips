@@ -44,6 +44,8 @@ var data_en =
 		"title": "Show working directory status",
 		"text_1": "",
 		"command_1": "git status [--show-stash] [--verbose] [--ignored]",
+		"text_2": "You can also inspect the status using the default graphical interface",
+		"command_2": "gitk [--all]",
 		"category": "stage area"
 	},
 	{
@@ -56,13 +58,13 @@ var data_en =
 		"title": "Add all files to stage",
 		"text_1": "",
 		"command_1": "git add .",
-		"text_2": "You can also use following command to add all the already tracked files",
+		"text_2": "You can also use following command to add all already tracked files",
 		"command_2": "git add -u",
 		"category": "stage area"
 	},
 	{
-		"title": "Remove file from stage",
-		"text_1": "Unstage desired file from the index",
+		"title": "Remove file or folder from stage",
+		"text_1": "Unstage desired file or folder from the index",
 		"command_1": "git reset HEAD -- <file | directory>",
 		"text_2": "or",
 		"command_2": "git restore --staged <file>",
@@ -73,6 +75,9 @@ var data_en =
 		"title": "Delete local changes of file",
 		"text_1": "",
 		"command_1": "git checkout -- <file>",
+		"text_2": "or",
+		"command_2": "git restore <file>",
+		"text_3": "The experimental restore command does the same thing as the checkout command but focused on file changes",
 		"category": "stage area"
 	},
 	{
@@ -145,6 +150,7 @@ var data_en =
 		"title": "Undo a local commit",
 		"text_1": "Undo last or specific commit",
 		"command_1": "git reset [--soft | --hard] (HEAD~ | <commit_hash>)",
+		"text_2": "--soft option will keep changes staged and --hard option will delete changes",
 		"category": "commit"
 	},
 	{
@@ -164,29 +170,43 @@ var data_en =
 	// pull
 	{
 		"title": "Pull changes from remote",
-		"text_1": "With no given option, git will pull in its default mode, creating a merge commit",
+		"text_1": "With no given option, git will pull in it's default mode, creating a merge commit",
 		"command_1": "git pull [--rebase | --ff | --ff-only]",
 		"text_2": "With --ff-only option, git will only update your branch if it can be fast forwarded",
 		"text_3": "With --rebase option, git will rebase local changes on top of remote changes",
 		"text_4": "With --ff option, git will create a merge commit",
 		"category": "pull"
 	},
-
 	{
-		"title": "Update remote of all branches",
-		"text_1": "",
-		"command_1": "git fetch (-a | --all)",
+		"title": "Update changes from all remotes",
+		"text_1": "The fetch command will download objects and refs from the repository",
+		"command_1": "git fetch --all [-a | --append] [--dry-run]",
+		"category": "pull"
+	},
+	{
+		"title": "Pull single file from remote",
+		"text_1": "After fetch operation, use",
+		"command_1": "git checkout <remote_name>/<branch_name> -- <file>",
 		"category": "pull"
 	},
 
 
 	// push
 	{
+		"title": "Add new remote to repository",
+		"text_1": "To add a new remote repository (usually origin), use",
+		"command_1": "git remote add <remote_name> <remote_url>",
+		"text_2": "To verify your new remote list, use",
+		"command_2": "git remote -V",
+		"category": "push"
+	},
+	{
 		"title": "Push changes to remote",
 		"text_1": "",
-		"command_1": "git push",
+		"command_1": "git push [<remote_name>]",
 		"text_2": "To setup remote branch tracking information to a new local branch, use",
-		"command_2": "git push -u origin <remote_branch_name>",
+		"command_2": "git push -u <remote_name> <remote_branch_name>",
+		"text_3": "Usually, <remote_name> will be origin",
 		"category": "push"
 	},
 
@@ -217,6 +237,7 @@ var data_en =
 		"command_1": "git checkout <branch_name>\n",
 		"text_2": "or",
 		"command_2": "git switch <branch_name>",
+		"text_3": "The experimental switch command does the same thing as the checkout command but focused on branch changes",
 		"category": "branch"
 	},
 
@@ -265,8 +286,9 @@ var data_en =
 		"title": "Rebase branch",
 		"text_1": "Move commits from branch A to branch B",
 		"command_1": "git checkout A\ngit rebase B [--autostash]",
-		"text_2": "Fix eventual <file> conflicts and continue as you would normally do",
-		"command_2": "git add <file>\ngit rebase --continue",
+		"text_2": "with --autostash option, git will create a temporary stash and apply it after the operation ends",
+		"text_3": "then, fix eventual <file> conflicts and continue as you would normally do",
+		"command_3": "git add <file>\ngit rebase --continue",
 		"category": "rebase"
 	},
 
@@ -338,6 +360,12 @@ var data_en =
 		"command_1": "git config [--global] pull.ff only",
 		"category": "config"
 	},
+	{
+		"title": "Prevent auto replacing LF with CRLF",
+		"text_1": "Useful when switching between windows and linux",
+		"command_1": "git config [--global] core.autocrlf false",
+		"category": "config"
+	},
 
 	// internals
 	{
@@ -353,19 +381,15 @@ var data_en =
 		"command_1": "git archive <branch> --format=zip --output=<file>.zip",
 		"category": "internals"
 	},
-
-
-
-
-
-
 	{
-		"title": "",
-		"text_1": "",
-		"command_1": "",
-		"category": ""
+		"title": "Retrieve a file from repository",
+		"text_1": "As archive command produces a tar or zip, you need to pipe the output to get the file content",
+		"command_1": "git archive --remote=<remote_url> (HEAD | <commit_hash>):<path> <file> | tar -x",
+		"text_2": "The <path> parameter is optional",
+		"text_3": "Note: Won't work over HTTP, only Git protocol !",
+		"category": "internals"
 	},
-	
+
 	
 
 ]
