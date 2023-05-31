@@ -148,10 +148,12 @@ var data_en =
 		"category": "commit"
 	},
 	{
-		"title": "Undo a local commit",
-		"text_1": "Undo last or specific commit",
+		"title": "Undo a commit",
+		"text_1": "Undo last or specific local commit",
 		"command_1": "git reset [--soft | --hard] (HEAD~ | <commit_hash>)",
 		"text_2": "--soft option will keep changes staged and --hard option will delete changes",
+		"text_3": "For a pushed commit, use",
+		"command_3": "git push -f origin HEAD^:master",
 		"category": "commit"
 	},
 	{
@@ -376,7 +378,9 @@ var data_en =
 	{
 		"title": "Prevent auto replacing LF with CRLF",
 		"text_1": "Useful when switching between windows and linux",
-		"command_1": "git config [--global] core.autocrlf false",
+		"command_1": "git config [--global] core.autocrlf (false | input | true)",
+		"text_2": "You can also use",
+		"command_2":"git config [--global] core.filemode (false | true)",
 		"category": "config"
 	},
 
